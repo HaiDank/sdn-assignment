@@ -1,0 +1,91 @@
+<nav
+	class="fixed left-0 top-0 h-full flex items-center w-64 overflow-hidden border-r shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] bg-white min-w-64 border-neutral-500/50"
+>
+	<ul
+		class="flex flex-col justify-between w-full h-full p-6 mt-6 font-semibold"
+	>
+		<div class="flex flex-col w-full gap-2">
+			<li class="flex w-full">
+				<a href="/" class="w-full p-2 px-4 text-xl font-bold">
+					Assignment 3
+				</a>
+			</li>
+			<li class="flex w-full">
+				<a
+					href="/"
+					class="w-full p-2 px-4 transition-all rounded hover:bg-neutral-500 hover:text-neutral-50 bg-neutral-300"
+				>
+					Home
+				</a>
+			</li>
+
+			<% if (user && user.isAdmin) { %>
+			<h5>Dashboard</h5>
+			<li class="flex w-full">
+				<a
+					href="/admin/orchids"
+					class="w-full p-2 px-4 transition-all rounded hover:bg-neutral-500 hover:text-neutral-50 bg-neutral-300"
+				>
+					Orchid
+				</a>
+			</li>
+			<li class="flex w-full">
+				<a
+					href="/admin/categories"
+					class="w-full p-2 px-4 transition-all rounded hover:bg-neutral-500 hover:text-neutral-50 bg-neutral-300"
+				>
+					Category
+				</a>
+			</li>
+			<li class="flex w-full">
+				<a
+					href="/admin/users"
+					class="w-full p-2 px-4 transition-all rounded hover:bg-neutral-500 hover:text-neutral-50 bg-neutral-300"
+				>
+					User
+				</a>
+			</li>
+
+			<% } %> <% if (user ) { %>
+				<h5>User</h5>
+			<li class="flex w-full">
+				<a
+					href="/users/profile"
+					class="w-full p-2 px-4 transition-all rounded hover:bg-neutral-500 hover:text-neutral-50 bg-neutral-300"
+					>Profile</a
+				>
+			</li>
+			<% } %>
+		</div>
+
+		<div class="flex flex-col w-full gap-2">
+			<% if (user) { %>
+
+			<hr />
+			<li class="flex w-full">
+				<a
+					href="/users/logout"
+					class="w-full p-2 px-4 transition-all bg-red-600 rounded hover:bg-red-800 text-neutral-50"
+					>Log out</a
+				>
+			</li>
+			<% } else { %>
+
+			<li class="flex w-full">
+				<a
+					href="/users/login"
+					class="w-full p-2 px-4 transition-all bg-green-600 rounded hover:bg-green-800 text-neutral-50"
+					>Login</a
+				>
+			</li>
+			<li class="flex w-full">
+				<a
+					href="/users/register"
+					class="w-full p-2 px-4 transition-all bg-blue-600 rounded hover:bg-blue-800 text-neutral-50"
+					>Sign up</a
+				>
+			</li>
+			<% } %>
+		</div>
+	</ul>
+</nav>

@@ -1,0 +1,63 @@
+<div class="flex items-center justify-center w-full h-full">
+    <form
+    method="post"
+        class="flex flex-col max-w-lg gap-2 p-10 text-xl bg-white border rounded-lg shadow-lg border-black/50 min-w-96 min-h-96 h-max">
+        <div>
+            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name:</label>
+            <input type="text" name="name" id="name" value="<%= user.name %>" required
+                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+        </div>
+        <div>
+            <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username:</label>
+            <input type="text" id="username" name="username" value="<%= user.username %>" required
+                class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+        </div>
+        <div>
+            <label for="YOB" class="block text-sm font-medium leading-6 text-gray-900">Year of birth:</label>
+            <input 
+            type="number" type="number" min="1900" max="2099" step="1" name="YOB" id="YOB" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset
+            ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600
+            sm:text-sm sm:leading-6" 
+            <% if (typeof user.YOB != 'undefined') { %>
+                value="<%= user.YOB %>"
+            <% } %>
+            />
+        </div>
+        <div>
+            <label for="role" class="block text-sm font-medium leading-6 text-gray-900">Role:</label>
+            <input 
+            type="text" name="role" id="role" disabled class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset
+            ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600
+            sm:text-sm sm:leading-6" 
+            <% if (user.isAdmin) { %>
+                value="admin"
+            <% } else { %>
+                value="user"
+            <% } %>
+            />
+        </div>
+
+        <input type="hidden" value="<%= user.id  %>" name="id"/>
+        <% if(success_msg !='' ){ %>
+            <span class="text-sm font-medium text-green-600">
+                <%= success_msg %>
+            </span>
+            <% } %> <% if(error_msg !='' ){ %>
+            <span class="text-sm font-medium text-red-600"> <%= error %> </span>
+            <% } %> <% if(error !='' ){ %>
+            <span class="text-sm font-medium text-red-600"> <%= error %> </span>
+            <% } %>
+        <ul class="flex justify-end gap-2">
+            <a href="/users/profile"
+                class="self-end p-2 px-4 text-center transition-colors duration-300 bg-red-600 rounded-lg text-neutral-50 hover:bg-red-800">
+                Return
+            </a>
+            <button type="submit"
+                class="self-end p-2 px-4 text-center transition-colors duration-300 bg-green-600 rounded-lg text-neutral-50 hover:bg-green-800">
+                Confirm change
+            </button>
+        </ul>
+    </form>
+</div>
+
+<script></script>

@@ -1,0 +1,56 @@
+
+<section class="h-full overflow-hidden">
+	<div class="relative h-full overflow-hidden bg-white">
+		<div
+			class="flex flex-col h-full max-w-2xl min-h-full gap-2 p-4 mx-auto overflow-hidden shadow-md sm:p-6 lg:max-w-7xl lg:p-8"
+		>
+			<div class="flex items-center justify-between">
+				<h2 class="text-3xl font-light">Dashboard User List</h2>
+			</div>
+			
+
+			<% if (typeof users !='undefined' && users.length > 0) { %>
+
+			<div
+				class="flex flex-col gap-2 px-6 py-4 divide-y divide-neutral-200 overflow-y-auto max-h-[65svh]"
+			>
+				<% users.forEach(oneUser => { %>
+
+				<div
+					class="relative flex items-center justify-between gap-2 px-2 group"
+				>
+					<div class="flex flex-wrap items-center w-full gap-2">
+						
+						
+
+							<h3 class="w-full text-xl font-light"><%= oneUser.username %></h3>
+                            <div class="flex items-center justify-between w-1/2">
+
+                                <span><%= oneUser.name %></span>
+                                <span><%= oneUser.YOB %></span>
+                                <span>
+                                    Role: 
+                                    <% if (oneUser.isAdmin) { %>
+                                        Admin
+                                        <% } else { %>
+                                            User
+                                            <% } %>
+                                            
+                                        </span>
+                                    </div>
+					</div>
+
+					
+				</div>
+
+				<% }) %>
+			</div>
+
+			<% } else { %>
+			<span class="w-full mt-6 font-medium text-center">
+				There's currently no users in the website
+			</span>
+			<% } %>
+		</div>
+	</div>
+</section>

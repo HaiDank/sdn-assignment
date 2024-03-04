@@ -1,9 +1,22 @@
 var express = require('express');
-var router = express.Router();
+const userController = require('../controllers/UserController');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const userRouter = express.Router();
 
-module.exports = router;
+const { ensureAuthenticated } = require('../config/auth');
+
+userRouter.route('/profile').get(ensureAuthenticated, userController.profile);
+userRouter.route('/profile/edit').get(ensureAuthenticated, userController.edit).post(ensureAuthenticated, userController.handleEditProfile);
+userRouter.route('/profile/change-password').get(ensureAuthenticated, userController.renderChangePassword).post(ensureAuthenticated, userController.changePassword)
+
+userRouter
+	.route('/register')
+	.get(userController.signup)
+	.post(userController.register);
+userRouter
+	.route('/login')
+	.get(userController.login)
+	.post(userController.signin);
+userRouter.route('/logout').get(userController.signout);
+
+module.exports = userRouter;

@@ -1,0 +1,63 @@
+<form method="get" class="flex items-center justify-center shadow-md max-h-max">
+
+    <input 
+    type="text"
+    name="search"
+    placeholder="Search orchids..."
+    class="w-full h-full p-3 px-6 rounded-lg"
+    />
+</form>
+<section class="h-full">
+	<div class="relative h-full bg-white">
+		<div
+			class="flex flex-col h-full max-w-2xl min-h-full gap-2 p-4 mx-auto overflow-hidden shadow-md sm:p-6 lg:max-w-7xl lg:p-8"
+		>   
+            <div class="flex items-center justify-between ">
+                <h2 class="text-3xl font-light">Orchid List</h2>
+                
+            </div>
+
+			<% if (orchids.length > 0) { %>
+                
+			<div
+				class="grid grid-cols-1 overflow-y-auto gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+			>
+				<% orchids.forEach(orchid => { %>
+
+					<a href="<%= orchid.name %>" class="p-2 border rounded-lg shadow-sm group">
+						<div
+							class="w-full overflow-hidden bg-gray-200 rounded-lg aspect-[5/7] "
+						>
+							<img
+								src="<%= orchid.image %>"
+								alt="orchid image"
+								class="object-cover object-center w-full h-full transition-all group-hover:opacity-75"
+							/>
+						</div>
+						<h3 class="mt-1 text-xl font-light text-gray-700"><%= orchid.name %></h3>
+						<p class="text-sm font-medium text-gray-900"><% if (orchid.category) { %>
+							<%= orchid.category.name %>
+							<% } else { %>
+							 This category has been deleted!
+						<% } %></p>
+						<p><%= orchid.origin %></p>
+						<span>
+
+							<% if (orchid.isNatural) { %>
+								Natural	
+								<% } else { %>
+								 Not natural
+							<% } %>
+								
+							</span>
+					</a>
+
+				<% }) %>
+			</div>
+
+			<% } else { %>
+			<span class="w-full mt-6 font-medium text-center"> There's currently no orchids in the store </span>
+			<% } %>
+		</div>
+	</div>
+</section>

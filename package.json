@@ -3,20 +3,32 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "tailwind:css": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css",
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "~4.16.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.0",
     "http-errors": "~1.6.3",
-    "jade": "~1.11.0",
     "mongoose": "^8.2.0",
     "morgan": "~1.9.1",
     "nodemon": "^3.1.0",
-    "passport": "^0.7.0"
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^8.0.0",
+    "session-file-store": "^1.5.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
   }
 }

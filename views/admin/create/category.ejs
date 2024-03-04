@@ -1,0 +1,60 @@
+<form
+	action="/admin/categories"
+	method="get"
+	class="flex items-center justify-center shadow-md max-h-max"
+>
+	<input
+		type="text"
+		name="search"
+		placeholder="Search categories..."
+		class="w-full h-full p-3 px-6 rounded-lg"
+	/>
+</form>
+<section class="h-full">
+	<div class="relative h-full bg-white">
+		<div
+			class="flex flex-col items-center h-full max-w-2xl min-h-full gap-2 p-4 mx-auto shadow-md sm:p-6 lg:max-w-7xl lg:p-8"
+		>
+			<div class="flex items-center w-full">
+				<h2 class="text-3xl font-light">Create Category</h2>
+			</div>
+			<form method="post" class="flex flex-col w-1/2 gap-2 my-6">
+				<div class="flex flex-col w-full">
+					<label for="name" class="font-medium">Name</label>
+					<div>
+						<input
+							class="w-full p-2 px-4 bg-white border rounded-md border-neutral-500/50"
+							id="name"
+							name="name"
+							required
+							type="text"
+							placeholder="Category name..."
+						/>
+					</div>
+				</div>
+                <% if (typeof message != 'undefined') { %>
+                    <div class="text-sm font-medium text-green-600">
+                        <%= message %>
+                    </div>
+                <% } %>
+				<% if (typeof errors !='undefined' ) { %> <%
+				errors.forEach(function (error){ %>
+				<div class="text-sm font-medium text-red-600">
+					<%= error.msg %>
+				</div>
+				<% }); %> <% } %>
+
+				<div
+					class="flex flex-col items-end justify-center w-full gap-2"
+				>
+					<button
+						type="submit"
+						class="p-2 px-4 transition-all bg-green-600 rounded-md min-w-24 text-neutral-50 hover:bg-green-800 hover:text-neutral-200"
+					>
+						Create
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>

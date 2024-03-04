@@ -1,0 +1,52 @@
+<div class="flex items-center justify-center w-full h-full">
+    <form method="post" class="flex flex-col gap-2 p-6 border rounded-md shadow-lg w-80 border-neutral-700/50 min-h-96 h-max">
+        <h2 class="flex items-center justify-center w-full text-xl font-semibold">
+            Sign up
+        </h2>
+        <div class="flex flex-col w-full">
+            <label for="username" class="font-medium">Username</label>
+            <div>
+                <input class="w-full p-2 px-4 border rounded-md border-neutral-500/50 bg-neutral-200/50" id="username"
+                    name="username" required type="text" placeholder="Username..." />
+            </div>
+        </div>
+        <div class="flex flex-col w-full">
+            <label for="password" class="font-medium">Password</label>
+            <div>
+                <input class="w-full p-2 px-4 border rounded-md border-neutral-500/50 bg-neutral-200/50" id="password"
+                    name="password" type="password" minlength="6" required placeholder="Password..." />
+            </div>
+        </div>
+        <div class="flex flex-col w-full">
+            <label for="YOB" class="font-medium">Year of birth</label>
+            <div>
+                <input class="w-full p-2 px-4 border rounded-md border-neutral-500/50 bg-neutral-200/50" id="YOB"
+                    name="YOB" type="number" min="1900" max="2099" step="1" required placeholder="Year of birth..." />
+            </div>
+        </div>
+        <div class="flex flex-col w-full">
+            <label for="name" class="font-medium">Name</label>
+            <div>
+                <input class="w-full p-2 px-4 border rounded-md border-neutral-500/50 bg-neutral-200/50" id="name"
+                    name="name" type="text" required placeholder="Name..." />
+            </div>
+        </div>
+        <% if (typeof errors !='undefined' ) { %>
+            <% errors.forEach(function (error){ %>
+                <div class="text-sm font-medium text-red-600">
+                    <%= error.msg %>
+                </div>
+                <% }); %>
+                    <% } %>
+
+                        <div class="flex flex-col items-end justify-center w-full gap-2">
+		<div class="flex justify-end w-full text-sm">Already have an account? <a href="/users/login" class="ml-2 text-blue-600 underline hover:text-blue-800">Sign in</a></div>
+
+                            <button
+                                type="submit"
+                                class="p-2 px-4 transition-all bg-red-600 rounded-md min-w-24 text-neutral-50 hover:bg-red-800 hover:text-neutral-200">
+                                Sign up
+                            </button>
+                        </div>
+    </form>
+</div>

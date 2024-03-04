@@ -1,0 +1,77 @@
+<div class="flex items-center justify-center w-full h-full">
+	<form
+		method="post"
+		class="flex flex-col gap-2 p-6 border rounded-md shadow-lg w-80 min-h-max border-neutral-700/50"
+	>
+		<h2
+			class="flex items-center justify-center w-full text-xl font-semibold"
+		>
+			Login
+		</h2>
+		<div class="flex flex-col w-full">
+			<label for="username" class="font-medium">Username</label>
+			<div>
+				<input
+					class="w-full p-2 px-4 border rounded-md border-neutral-500/50 bg-neutral-200/50"
+					id="username"
+					name="username"
+					required
+					type="text"
+					placeholder="Username..."
+				/>
+			</div>
+		</div>
+		<div class="flex flex-col w-full">
+			<label for="password" class="font-medium">Password</label>
+			<div>
+				<input
+					class="w-full p-2 px-4 border rounded-md border-neutral-500/50 bg-neutral-200/50"
+					id="password"
+					name="password"
+					type="password"
+					required
+					placeholder="Password..."
+				/>
+			</div>
+		</div>
+		<% if(success_msg !='' ){ %>
+		<span class="text-sm font-medium text-green-600">
+			<%= success_msg %>
+		</span>
+		<% } %> <% if(error_msg !='' ){ %>
+		<span class="text-sm font-medium text-red-600"> <%= error_msg %> </span>
+		<% } %> <% if(error !='' ){ %>
+		<span class="text-sm font-medium text-red-600"> <%= error %> </span>
+		<% } %>
+		<div class="flex justify-end w-full text-sm">
+			Don't have an account?
+			<a
+				href="/users/register"
+				class="ml-2 text-blue-600 underline hover:text-blue-800"
+				>Sign up</a
+			>
+		</div>
+
+		<div class="flex items-center justify-end w-full gap-2">
+			<button
+				type="submit"
+				class="w-full p-2 px-4 transition-all bg-blue-600 rounded-md min-w-24 text-neutral-50 hover:bg-blue-800 hover:text-neutral-200"
+			>
+				Log in
+			</button>
+		</div>
+		<div class="relative flex items-center">
+			<div class="flex-grow border-t border-gray-400"></div>
+			<span class="flex-shrink mx-4 text-gray-400">or</span>
+			<div class="flex-grow border-t border-gray-400"></div>
+		</div>
+		<div class="flex items-center justify-end w-full gap-2">
+			<a
+				href="/auth/google"
+				class="w-full p-2 px-4 text-center transition-all bg-green-600 rounded-md min-w-24 text-neutral-50 hover:bg-green-800 hover:text-neutral-200"
+			>
+				Log in with Google
+			</a>
+		</div>
+	</form>
+</div>

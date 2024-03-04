@@ -1,0 +1,117 @@
+<section class="h-full">
+	<div class="relative h-full bg-white">
+		<div class="flex flex-col h-full min-h-full gap-2 px-4 pt-2 pb-2 mx-auto overflow-y-auto shadow-md">
+			<h2 class="text-3xl font-light">Orchid details</h2>
+
+			<% if (typeof orchid !='undefined' ) { %>
+
+			<div class="flex gap-2">
+				<div
+					class="overflow-hidden w-60 aspect-[5/7] rounded border border-neutral-300/50 shadow-lg"
+				>
+					<img
+						src="<%= orchid.image %>"
+						class="object-cover object-center w-full h-full"
+					/>
+				</div>
+
+				<div class="flex flex-col gap-4">
+					<h5 class="text-3xl font-light"><%= orchid.name %></h5>
+					<p class="text-xl"><% if (orchid.category) { %>
+						<%= orchid.category.name %>
+						<% } else { %>
+						 This category has been deleted!
+					<% } %></p>
+					<p class="text-xl"><%= orchid.origin %></p>
+					<p class="text-xl">
+						<% if (orchid.isNatural) { %> 
+						It is natural 
+						<% } else {%> It is not natural <% } %>
+					</p>
+				</div>
+			</div>
+
+			<% } %> <% if (user) { %>
+			<form method="post" class="w-full h-60">
+				<input type="hidden" name="id" value="<%= orchid.id %>" />
+				<input type="hidden" name="userid" value="<%= user.id %>" />
+				<div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50">
+					<div class="px-4 py-2 bg-white rounded-t-lg">
+						<div class="flex items-center gap-10 mb-2">
+							<label
+								for="comment"
+								class="mb-2 text-sm font-medium text-gray-900"
+								>Your comment
+							</label>
+							<select
+								id="rating"
+								name="rating"
+								class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-max p-2.5"
+							>
+								<option selected>Set a rating</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</div>
+
+						<textarea
+							id="comment"
+							name="comment"
+							rows="4"
+							class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+							placeholder="Write your thoughts here..."
+						></textarea>
+						<% if(success_msg !='' ){ %>
+						<span class="text-sm font-medium text-green-600">
+							<%= success_msg %>
+						</span>
+						<% } %> <% if(error_msg !='' ){ %>
+						<span class="text-sm font-medium text-red-600">
+							<%= error_msg %>
+						</span>
+						<% } %> <% if(error !='' ){ %>
+					
+
+					<span class="text-sm font-medium text-red-600">
+						<%= error %>
+					</span>
+					<% } %>
+				</div>
+					<div class="flex items-center justify-between px-3 py-2 border-t">
+						<button
+							type="submit"
+							class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800"
+						>
+							Post comment
+						</button>
+					</div>
+				</div>
+			</form>
+
+			<% } %>
+
+			<div class="flex flex-col gap-4">
+				<% if (typeof orchid.comments !='undefined' && orchid.comments.length > 0 ) { %> 
+					<h5 class="text-lg font-medium">Comments: </h5>
+					<% orchid.comments.forEach(comment=> { %>
+				<div class="flex flex-col gap-2 p-4 rounded-lg shadow-md border-neutral-200/50">
+					<div class="flex items-center justify-between w-full ">
+						<h5 class="text-sm font-medium">
+							Commented by: <%= comment.author.name %>
+						</h5>
+						<p class="text-sm">
+							Rating: <%= comment.rating %> out of 5
+						</p>
+					</div>
+					<p class="text-lg"><%= comment.comment %></p>
+				</div>
+				<% }) %> 
+				<% } %>
+			</div>
+
+		</div>
+	</div>
+</section>

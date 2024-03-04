@@ -1,0 +1,124 @@
+<section class="h-full">
+    <div class="relative h-full bg-white">
+        <div
+            class="flex flex-col items-center h-full min-h-full gap-2 p-4 mx-auto shadow-md sm:p-6 lg:max-w-7xl lg:p-8">
+            <div class="flex items-center justify-between w-full">
+                <h2 class="text-3xl font-light">Orchid details</h2>
+
+                <a href="<%= orchid.name %>/delete"
+                    class="p-1 px-4 transition-all bg-red-600 rounded w-max hover:bg-red-800 text-neutral-50">
+                    Delete
+                </a>
+            </div>
+
+            <form autocomplete="off" method="post" class="flex flex-col w-1/2 gap-2 my-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name:</label>
+                    <input type="text" name="name" id="name" value="<%= orchid.name %>" required
+                        class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                </div>
+
+                <div>
+                    <label for="image" class="block text-sm font-medium leading-6 text-gray-900">Image Url:</label>
+                    <input type="text" name="image" id="image" value="<%= orchid.image %>" required
+                        class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                </div>
+                <div class="flex items-center justify-between w-full gap-4">
+                    <div class="flex flex-col flex-1">
+                        <label for="origin" class="font-medium">Country of origin</label>
+                        <div>
+                            <input class="w-full p-2 px-4 bg-white border rounded-md border-neutral-500/50" id="origin"
+                                name="origin" type="text" value="<%= orchid.origin %>" required
+                                placeholder="Country..." />
+                        </div>
+                    </div>
+                    <div class="flex flex-col flex-1">
+                        <label for="origin" class="font-medium">Category</label>
+                        <div>
+                            <input class="w-full p-2 px-4 bg-white border rounded-md border-neutral-500/50"
+                                id="category" list="categoryList" name="category" 
+                                <% if (orchid.category) { %>
+                                    value="<%= orchid.category.name %>""
+                                    <% } else { %>
+                                     value=""
+                                <% } %>
+                                
+                                type="text" required placeholder="Category name..." />
+                            <datalist id="categoryList">
+                                <% if (typeof categories !='undefined' ) { %>
+                                    <% categories.forEach(category=> { %>
+                                        <option value="<%= category.name %>">
+                                            <% }) %>
+                                                <% } %>
+                                        </option>
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center w-full gap-4">
+                    <label for="isNatural" class="font-medium">Is it natural?</label>
+                    <ul
+                        class="flex items-center text-sm font-medium text-gray-900 bg-white border divide-x rounded-lg border-neutral-500/50 divide-neutral-500/50 w-max">
+                        <li class="px-4 w-max">
+                            <div class="flex items-center">
+                                <input id="is-natural-true" type="radio" value="true" name="isNatural"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" />
+                                <label for="is-natural-true"
+                                    class="w-full py-3 text-sm font-medium text-gray-900 ms-2">Yes
+                                </label>
+                            </div>
+                        </li>
+                        <li class="px-4 w-max">
+                            <div class="flex items-center">
+                                <input id="is-natural-false" type="radio" value="false" name="isNatural"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500" />
+                                <label for="is-natural-false"
+                                    class="w-full py-3 text-sm font-medium text-gray-900 ms-2">No</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <input type="hidden" name="id" value="<%= orchid._id %>" />
+                <% if(success_msg !='' ){ %>
+                    <span class="text-sm font-medium text-green-600">
+                        <%= success_msg %>
+                    </span>
+                    <% } %>
+                        <% if(error_msg !='' ){ %>
+                            <span class="text-sm font-medium text-red-600">
+                                <%= error_msg %>
+                            </span>
+                            <% } %>
+                                <% if(error !='' ){ %>
+                                    <span class="text-sm font-medium text-red-600">
+                                        <%= error %>
+                                    </span>
+                                    <% } %>
+                                        <div class="flex items-center justify-end gap-2">
+                                            <button type="submit"
+                                                class="p-1 px-4 transition-all bg-green-600 rounded w-max hover:bg-green-800 text-neutral-50">
+                                                Update
+                                            </button>
+                                            <a href="/admin/orchids"
+                                                class="p-1 px-4 transition-all bg-red-600 rounded w-max hover:bg-red-800 text-neutral-50">
+                                                Return
+                                            </a>
+                                        </div>
+            </form>
+        </div>
+    </div>
+
+    <% if (orchid.isNatural) {%>
+        <script>
+            const radioTrue = document.getElementById('is-natural-true');
+            radioTrue.checked = true;
+        </script>
+
+        <% } else { %>
+            <script>
+                const radioFalse = document.getElementById('is-natural-false');
+                radioFalse.checked = true;
+            </script>
+
+            <% } %>
+</section>
